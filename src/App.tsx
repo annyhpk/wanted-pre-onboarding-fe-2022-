@@ -1,25 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {lazy, Suspense} from 'react';
+import {Routes, Route} from 'react-router-dom';
+
+// GlobalNavBar and Loading
+import GlobalNavBar from './components/GNB';
+import Loading from './components/Spiner';
+
+// Pages
+import MainPage from './pages/MainPage';
+const LoginInPage = lazy(() => import('./pages/LoginPage'));
+const SignUpPage = lazy(() => import('./pages/SignUpPage'));
+const TodoPage = lazy(() => import('./pages/TodoPage'));
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Suspense fallback={<Loading />}>
+      <GlobalNavBar />
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="login" element={<LoginInPage />} />
+        <Route path="signup" element={<SignUpPage />} />
+        <Route path="todo" element={<TodoPage />} />
+      </Routes>
+    </Suspense>
   );
 }
 

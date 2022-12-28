@@ -3,7 +3,7 @@
   "compilerOptions": {
     "rootDir": ".",
     "allowJs": true,
-    "target": "ES6",
+    "target": "ES2022",
     "outDir": "./dist",
     "strict": true,
     "strictNullChecks": true,
@@ -12,10 +12,13 @@
     "strictPropertyInitialization": true,
     "noImplicitThis": true,
     "alwaysStrict": true,
+    "lib": ["ESNext", "DOM", "dom.iterable"],
+    "jsx": "react-jsx"
   },
   "include": [
     "src/**/*.ts",
-    "test/**/*.ts"
+    "test/**/*.ts", 
+    "src/contexts/Login/index.tsx",  
   ],
   "exclude": ["node_modules", "dist"]
 }
